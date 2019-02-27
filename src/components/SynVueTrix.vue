@@ -147,7 +147,7 @@ export default {
                       : (el.className.indexOf('trix-content') + 1 ? el : el );
           let _editor = _node.editor;
           let rect = _editor.getClientRectAtPosition(0)
-          let pixelOffset = {x:rect.left, y:rect.top}
+          let pixelOffset = rect ? {x:rect.left, y:rect.top} {x:0,y:0}
           
           // later add infomation tooltip at the pixel offset later
       },
