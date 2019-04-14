@@ -40,7 +40,7 @@
     "lint":"vue-cli-service lint --fix"
   },
   "dependencies": {
-    "vue-trix": "^0.7.3"
+    "vue-trix": "^0.7.5"
   },
   "devDependencies":{
      "@vue/cli-plugin-babel": "^3.3.0",
