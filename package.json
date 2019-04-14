@@ -1,5 +1,5 @@
 {
-  "name": "@synergixe/vue-trix",
+  "name": "vue-trix-readonly",
   "version": "0.0.1",
   "description": "A Vue plugin for the fabulous Trix javascript editor from Basecamp with readonly capabilities",
   "main": "build/syn-vue-trix.umd.js",
@@ -40,7 +40,7 @@
     "lint":"vue-cli-service lint --fix"
   },
   "dependencies": {
-    "vue-trix": "^0.7.5"
+    "vue-trix": "^0.8.1"
   },
   "devDependencies":{
      "@vue/cli-plugin-babel": "^3.3.0",
