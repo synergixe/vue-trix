@@ -11,17 +11,17 @@
     :localStorage="localStorage"
     v-trix-editor-options="editorOptions"
     :placeholder="placeholder"
-    :init-content="initialContent"
+    :initContent="initialContent"
     :inputId="inputId"
     :inputName="inputName"
+    :trixFocus="handleFocus"
+    :trixBlur="handleBlur"
     v-model="content"
     @trix-attachment-add="handleAttachmentAdd"
     @trix-attachment-remove="handleAttachmentRemove"
     @trix-file-accept="handleFileAccept"
     @trix-before-initialize="handleBeforeInit"
     @trix-initialize="handleInit"
-    @trix-focus="handleFocus"
-    @trix-blur="handleBlur"
   />
 </template>
 
