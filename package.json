@@ -2,10 +2,10 @@
   "name": "vue-trix-readonly",
   "version": "0.0.1",
   "description": "A Vue plugin for the fabulous Trix javascript editor from Basecamp with readonly capabilities",
-  "main": "build/syn-vue-trix.umd.js",
-  "unpkg": "build/syn-vue-trix.umd.min.js",
+  "main": "./build/syn-vue-trix.umd.js",
+  "unpkg": "./build/syn-vue-trix.umd.min.js",
   "browser": {
-    "./sfc": "src/components/SynVueTrix.vue"
+    "./sfc": "./src/components/SynVueTrix.vue"
   },
   "files": [
     "example/*",
@@ -35,19 +35,19 @@
     "caption",
     "synergixe"
   ],
-  "scripts":{
-    "build:umd":"vue-cli-service build --target lib --name syn-vue-trix ./src/index.js",
-    "lint":"vue-cli-service lint --fix",
+  "scripts": {
+    "build:umd": "vue-cli-service build --target lib --name syn-vue-trix ./src/index.js",
+    "lint": "vue-cli-service lint --fix",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vue-trix": "^0.8.2"
+    "vue-trix": "^0.8.3"
   },
-  "devDependencies":{
-     "@vue/cli-plugin-babel": "^3.6.0",
-    "@vue/cli-plugin-eslint": "^3.6.0",
-    "@vue/cli-plugin-unit-jest": "^3.6.0",
-    "@vue/cli-service": "^3.6.0",
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-plugin-unit-jest": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "~7.0.0-bridge.0",
