@@ -7,15 +7,15 @@
 
 <template>
   <VueTrix
-    ref="trix"
-    :localStorage="localStorage"
     v-trix-editor-options="editorOptions"
+    ref="trix"
+    :local-storage="localStorage"
     :placeholder="placeholder"
-    :initContent="initialContent"
-    :inputId="inputId"
-    :inputName="inputName"
-    :trixFocus="handleFocus"
-    :trixBlur="handleBlur"
+    :init-content="initialContent"
+    :input-id="inputId"
+    :input-name="inputName"
+    :trix-focus="handleFocus"
+    :trix-blur="handleBlur"
     v-model="content"
     @trix-attachment-add="handleAttachmentAdd"
     @trix-attachment-remove="handleAttachmentRemove"
@@ -28,7 +28,51 @@
 <script>
 import VueTrix from 'vue-trix';
 export default {
-  name: 'syn-vue-trix',
+  name: 'SynVueTrix',
+  components: {
+    VueTrix
+  },
+  directives: {
+    'trix-editor-options': {
+      bind(el, binding, vnode){
+            let _node = (el.className.indexOf('trix-container') + 1)
+                      ? el.getElementsByTagName('trix-editor')[0]
+                      : (el.className.indexOf('trix-content') + 1 ? el : el );
+            let _editor = _node.editor;
+          if((binding.arg && binding.arg === 'readonly') 
+              || (binding.value === 'readonly') 
+                || (binding.value && binding.value.readonly === 'readonly')){
+            _node.contentEditable = false;
+            _node.parentNode.classList.add("trix-disabled");
+          } else {
+            _node.contentEditable = true;
+            _node.parentNode.classList.remove("trix-disabled");
+          }
+          if(binding.value && binding.value.attachments instanceof Object){
+              if(Trix){
+                  Trix.config.attachments.preview.caption = binding.attachments.caption;
+              }
+          }
+      },
+      inserted(el){
+          let _node = (el.className.indexOf('trix-container') + 1)
+                      ? el.getElementsByTagName('trix-editor')[0]
+                      : (el.className.indexOf('trix-content') + 1 ? el : el );
+          let _editor = _node.editor;
+          let rect = _editor.getClientRectAtPosition(0)
+          let pixelOffset = rect ? {x:rect.left, y:rect.top} : {x:0,y:0}
+          
+          // later add infomation tooltip at the pixel offset later
+      },
+      update(el, binding, vnode) {
+        
+      }
+    }
+  },
+  model:{
+    prop:'initialContent',
+    event:'update'
+  },
   props: {
     readonly: {
       default: false,
@@ -59,9 +103,6 @@ export default {
       default: ''
     }
   },
-  components: {
-    VueTrix
-  },
   data() {
     return {
       content: this.initialContent
@@ -81,9 +122,11 @@ export default {
               } : '');
     }
   },
-  model:{
-    prop:'initialContent',
-    event:'update'
+  watch: {
+    content: {
+      immediate:true,
+      handler:"updateEditorModel"
+    }
   },
   methods:{
     handleInit(data){
@@ -113,49 +156,6 @@ export default {
          
     }
   },
-  watch: {
-    content: {
-      immediate:true,
-      handler:"updateEditorModel"
-    }
-  },
-  directives: {
-    'trix-editor-options': {
-      bind(el, binding, vnode){
-            let _node = (el.className.indexOf('trix-container') + 1)
-                      ? el.getElementsByTagName('trix-editor')[0]
-                      : (el.className.indexOf('trix-content') + 1 ? el : el );
-            let _editor = _node.editor;
-          if((binding.arg && binding.arg === 'readonly') 
-              || (binding.value === 'readonly') 
-                || (binding.value && binding.value.readonly === 'readonly')){
-            _node.contentEditable = false;
-            _node.parentNode.classList.add("trix-disabled");
-          } else {
-            _node.contentEditable = true;
-            _node.parentNode.classList.remove("trix-disabled");
-          }
-          if(binding.value && binding.value.attachments instanceof Object){
-              if(Trix){
-                  Trix.config.attachments.preview.caption = binding.attachments.caption;
-              }
-          }
-      },
-      inserted(el){
-          let _node = (el.className.indexOf('trix-container') + 1)
-                      ? el.getElementsByTagName('trix-editor')[0]
-                      : (el.className.indexOf('trix-content') + 1 ? el : el );
-          let _editor = _node.editor;
-          let rect = _editor.getClientRectAtPosition(0)
-          let pixelOffset = rect ? {x:rect.left, y:rect.top} {x:0,y:0}
-          
-          // later add infomation tooltip at the pixel offset later
-      },
-      update(el, binding, vnode) {
-        
-      }
-    }
-  }
 }
 </script>
 
