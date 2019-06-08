@@ -1,7 +1,10 @@
+'use strict'
+
 import {
   shallowMount,
   mount
 } from '@vue/test-utils'
+
 import SynVueTrix from '../../src/components/SynVueTrix.vue'
 
 describe('SynVueTrix.vue', () => {

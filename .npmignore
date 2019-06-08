@@ -1,0 +1,5 @@
+tests
+examples
+.eslintrc.js
+.travis.yml
+jest.config.js

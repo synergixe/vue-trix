@@ -2,7 +2,8 @@
   "name": "vue-trix-readonly",
   "version": "0.0.1",
   "description": "A Vue plugin for the fabulous Trix javascript editor from Basecamp with readonly capabilities",
-  "main": "./build/syn-vue-trix.umd.js",
+  "main": "./build/syn-vue-trix.common.js",
+  "module":"./build/syn-vue-trix.umd.js",
   "unpkg": "./build/syn-vue-trix.umd.min.js",
   "browser": {
     "./sfc": "./src/components/SynVueTrix.vue"
@@ -38,7 +39,7 @@
   "scripts": {
     "build:umd": "vue-cli-service build --target lib --name syn-vue-trix ./src/index.js",
     "lint": "vue-cli-service lint --fix",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "cross-env VUE_CLI_BABEL_TRANSPILE_MODULES=* vue-cli-service test:unit"
   },
   "dependencies": {
     "vue-trix": "^0.8.3"
@@ -50,16 +51,17 @@
     "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
-    "babel-core": "~7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
+    "cross-env": "^5.2.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest-serializer-vue": "^2.0.2",
-    "jest-transform-stub": "^2.0.0",
     "sass-loader": "^7.0.1",
     "uglify-es": "^3.3.9",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
   },
   "browserslist": [
     "> 1%",

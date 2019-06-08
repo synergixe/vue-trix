@@ -1,7 +1,7 @@
 /*
  * @version: 0.0.1
  * @author: https://twitter.com/isocroft
- * 
+ *
  * @project: https://github.com/synergixe/vue-trix
  */
 
