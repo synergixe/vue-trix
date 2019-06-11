@@ -39,7 +39,8 @@
   "scripts": {
     "build:umd": "vue-cli-service build --target lib --name syn-vue-trix ./src/index.js",
     "lint": "vue-cli-service lint --fix",
-    "test:unit": "cross-env VUE_CLI_BABEL_TRANSPILE_MODULES=* vue-cli-service test:unit"
+    "test:unit": "./node_modules/.bin/jest",
+    "test": "vue-cli-service test:unit"
   },
   "dependencies": {
     "vue-trix": "^0.8.3"
