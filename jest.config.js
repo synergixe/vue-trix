@@ -1,4 +1,5 @@
 module.exports = {
+  verbose: true,
   testEnvironment: 'node',
   moduleFileExtensions: [
     'js',
@@ -6,17 +7,18 @@ module.exports = {
     'vue'
   ],
   transform: {
-    '^.+\\.vue$': 'vue-jest',
-    '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub'/*,
-      '^.+\\.jsx?$': 'babel-jest' */
+    //'^.+\\.vue$': 'vue-jest',
+    ".*\\.(vue)$": "vue-jest",
+    "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+    '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub'
   },
   transformIgnorePatterns: [
     '/node_modules/.*'
   ],
-  moduleNameMapper: {
+  /*moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|less|scss)$': 'identity-obj-proxy'
-  },
+  },*/
   snapshotSerializers: [
     'jest-serializer-vue'
   ],
@@ -26,7 +28,7 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['html', 'text-summary'],
   collectCoverageFrom: [
-    'src/**/*.{js,vue}',
+    'src/components/*.{js,vue}',
     '!**/node_modules/**',
     '!src/index.js'
   ]
