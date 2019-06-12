@@ -7,8 +7,20 @@ import {
 
 import SynVueTrix from '../../src/components/SynVueTrix.vue'
 
+let wrapper = { destroy: function () {} }
+
+afterEach(() => {
+  wrapper.destroy()
+})
+
 describe('SynVueTrix.vue', () => {
-  it('renders valid elements', () => {
+  it('it is a vue instance', () => {
+    wrapper = mount(SynVueTrix)
+
+    expect(wrapper.isVueInstance).toBeTruthy()
+  })
+
+  it('it renders valid elements', () => {
     const wrapper = mount(SynVueTrix)
 
     // assert the component is rendered
@@ -34,7 +46,7 @@ describe('SynVueTrix.vue', () => {
       trixBlur: () => {}
     }
 
-    const wrapper = shallowMount(SynVueTrix, { propsData })
+    wrapper = shallowMount(SynVueTrix, { propsData })
 
     // assert component props correctly
     Object.keys(propsData).forEach(key => {
@@ -43,7 +55,7 @@ describe('SynVueTrix.vue', () => {
   })
 
   it('has valid hidden input', () => {
-    const wrapper = mount(SynVueTrix, {
+    wrapper = mount(SynVueTrix, {
       propsData: {
         inputId: 'inputId',
         inputName: 'content',
@@ -63,7 +75,7 @@ describe('SynVueTrix.vue', () => {
   })
 
   it('has valid trix-editor attributes', () => {
-    const wrapper = mount(SynVueTrix, {
+    wrapper = mount(SynVueTrix, {
       propsData: {
         inputId: 'inputId',
         inputName: 'content',
@@ -82,7 +94,7 @@ describe('SynVueTrix.vue', () => {
   })
 
   it('works with v-model directive', () => {
-    const wrapper = mount(SynVueTrix, {
+    wrapper = mount(SynVueTrix, {
       propsData: {
         srcContent: 'init content'
       }
