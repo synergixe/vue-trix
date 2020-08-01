@@ -170,4 +170,20 @@ export default {
 .trix-disabled .trix-toolbar {
   opacity: 0.56 !important;
 }
+
+.trix-button--icon-increase-nesting-level,
+.trix-button--icon-decrease-nesting-level,
+/*.trix-button--icon-strike,*/
+.trix-button--icon-code { 
+  display:none; 
+}
+
+trix-toolbar .trix-button-group button {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+trix-toolbar .trix-button-group button.trix-button--icon-bold::before {
+  color: white;
+}
 </style>
