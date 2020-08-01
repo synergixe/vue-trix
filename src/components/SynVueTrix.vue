@@ -48,10 +48,16 @@ export default {
           _node.contentEditable = true
           _node.parentNode.classList.remove('trix-disabled')
         }
-        if (binding.value && binding.value.attachments instanceof Object) {
-          /* eslint-disable no-undef */
-          if (Trix) {
+        
+        /* eslint-disable no-undef */
+        if (Trix) {
+          if (binding.value && binding.value.attachments instanceof Object) {
             Trix.config.attachments.preview.caption = binding.attachments.caption
+          } else {
+            Trix.config.attachments.preview.caption = {
+              name: false,
+              size: false
+            };
           }
           /* eslint-disable no-undef */
         }
@@ -160,13 +166,18 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/*.trix-container {
-  min-height: 200px;
-}*/
+.trix-container {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 .trix-disabled .trix-editor,
 .trix-disabled .trix-toolbar {
   pointer-events: none !important;
 }
+
 .trix-disabled .trix-toolbar {
   opacity: 0.56 !important;
 }
